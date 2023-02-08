@@ -1,0 +1,22 @@
+<config-template xmlns="http://tail-f.com/ns/config/1.0"
+                 servicepoint="NTP">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+    <device>
+      <name>{/device}</name>
+      <config>
+        <ntp xmlns="http://tail-f.com/ned/cisco-ios-xr">
+          <peer>
+            <address>{/peer-address}</address>
+          </peer>
+          <server>
+            <server-list>
+              <name>{/server-address}</name>
+              <minpoll>{/minpoll}</minpoll>
+              <maxpoll>{/maxpoll}</maxpoll>
+            </server-list>
+          </server>
+        </ntp>
+      </config>
+    </device>
+  </devices>
+</config-template>

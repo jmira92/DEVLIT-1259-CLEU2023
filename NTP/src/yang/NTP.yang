@@ -1,0 +1,49 @@
+module NTP {
+  namespace "http://com/example/NTP";
+  prefix NTP;
+
+  import ietf-inet-types {
+    prefix inet;
+  }
+  import tailf-ncs {
+    prefix ncs;
+  }
+
+  list NTP {
+    key name;
+
+    uses ncs:service-data;
+    ncs:servicepoint "NTP";
+
+    leaf name {
+      type string;
+    }
+
+    // may replace this with other ways of refering to the devices.
+    leaf-list device {
+      type leafref {
+        path "/ncs:devices/ncs:device/ncs:name";
+      }
+    }
+
+    leaf peer-address {
+      type inet:ipv4-address;
+      mandatory true;
+    }
+
+    leaf server-address {
+      type inet:ipv4-address;
+      mandatory true;
+    }
+    
+    leaf minpoll {
+      type uint8;
+      default "8";
+    }
+    
+    leaf maxpoll {
+      type uint8;
+      default "12";
+    }
+  }
+}
